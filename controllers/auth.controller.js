@@ -43,7 +43,7 @@ export const Login = async (req, res, next) => {
     const { password, ...info } = user._doc;
     res
       .cookie("accessToken", token, {
-        httpOnly: true,
+        httpOnly: false,
       })
       .status(200)
       .json(info);
@@ -55,7 +55,7 @@ export const Login = async (req, res, next) => {
 export const Logout = async (req, res) => {
   res
     .clearCookie("accessToken", {
-      sameSite: "None",
+      sameSite: "none",
       secure: true,
     })
     .status(200)
